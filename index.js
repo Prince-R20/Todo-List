@@ -12,21 +12,56 @@ const date = {
 }
 todayDate.textContent = `${date.day}, ${date.weekday} ${date.month} ${date.year}.`;
 
+//getting html element needed to add functionality
+const createTask = document.getElementById("createTask");
+const complete = document.getElementById("complete");
+const allTask = document.getElementById("allTask");
+
+
 //To Do List App
 let todoList = [];
 let taskId = 1;
 
+//taking the new task
+createTask.onclick = () => {
+    const taskIn = document.getElementById("taskIn").value;
+    addTask(taskIn)
+}
+
 //add task to the to-do list
 function addTask(title){
-
     const task = {
         id: taskId++,
         title: title,
         complete: false
     };
+    if(title == ""){
+        window.alert(`Enter your task`)    
+    }else{
+        todoList.push(task);
+        const newtask = document.createElement("label");
+        newtask.textContent = title;
 
-    todoList.push(task);
-    console.log(`Task ${title} added successfully.`)
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.classList = "complete";
+
+        const x = document.createElement("button");
+        x.classList = "deleteTask"
+        x.textContent = "x";
+        x.addEventListener("click", event => deleteTask(task.id));
+
+        const taskbox = document.createElement("div");
+        taskbox.classList = "task";
+        taskbox.id = task.id
+        taskbox.appendChild(checkbox);
+        taskbox.appendChild(newtask);
+        taskbox.appendChild(x);
+
+        allTask.appendChild(taskbox)
+        
+        window.alert(`Task ${title} added successfully.`)
+    }
 }
 
 //list all task
@@ -51,8 +86,10 @@ function completeTask(id){
 function deleteTask(id){
     const index = todoList.findIndex(task => task.id === id);
     if(index !== -1){
+        const remove = document.getElementById(id);
         const removeTask = todoList.splice(index, 1)[0];
         console.log(`Task ${removeTask.title} delete.`);
+        allTask.removeChild(remove)
     }else{
         console.log("Task not found.");
     }
@@ -68,16 +105,3 @@ function editTask(id, newTitle){
         console.log("Task not found.")
     }
 }
-
-addTask("Learn Javascript");
-addTask("Build a portfolio website");
-listTask();
-
-completeTask(1)
-listTask();
-
-deleteTask(2)
-listTask();
-
-editTask(1, "Master Javascript")
-listTask();
