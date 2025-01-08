@@ -4,9 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TO-DO LIST</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <main>
+        <header>
+            <div id="title">
+                <h1>To-Do List</h1>
+            </div>
+            <div id="greetings">
+                <h2>Good Morning, Prince!👋</h2>
+                <p>Today <span id="todayDate"></span></p>
+            </div>
+        </header>
+
+        <section id="newTask">
+            <h4>Add new task</h4>
+            <div id="center">
+                <input type="text" id="task" placeholder="Lock in 🔒"/>
+                <button type="submit">Add</button>
+            </div>
+        </section>
+    </main>
+
+    <section id="allTask">
+        <div class="task">
+            <input type="checkbox" id="task"><label for="task">Add a new task</label>
+            <button>x</button>
+        </div>
+    </section>
 </body>
 <script src="index.js"></script>
 </html>

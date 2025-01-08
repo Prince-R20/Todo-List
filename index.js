@@ -1,3 +1,17 @@
+//adding todays date to ui
+const todayDate = document.getElementById("todayDate");
+
+const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+const months = ["January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December"]
+const date = {
+    weekday: new Date().getDate() + "th",
+    month: months[new Date().getMonth()],
+    day: days[new Date().getDay()],
+    year: new Date().getFullYear()
+}
+todayDate.textContent = `${date.day}, ${date.weekday} ${date.month} ${date.year}.`;
+
 //To Do List App
 let todoList = [];
 let taskId = 1;
