@@ -45,6 +45,8 @@ function addTask(title){
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.classList = "complete";
+        checkbox.id = task.id;
+        checkbox.addEventListener("click", event => completeTask(task.id, newtask))
 
         const x = document.createElement("button");
         x.classList = "deleteTask"
@@ -65,13 +67,14 @@ function addTask(title){
 }
 
 //Mark task as done
-function completeTask(id){
+function completeTask(id, title){
     const task = todoList.find(task => task.id === id)
     if(task){
         task.complete = true;
-        console.log(`Task ${task.title} marked as complete`);
+        window.alert(`Task ${task.title} marked as complete`);
+        title.textContent += " (Completed)"
     }else{
-        console.log(`Task not found`);
+        window.alert(`Task not found`);
     }
 }
 
@@ -81,20 +84,20 @@ function deleteTask(id){
     if(index !== -1){
         const remove = document.getElementById(id);
         const removeTask = todoList.splice(index, 1)[0];
-        console.log(`Task ${removeTask.title} delete.`);
+        window.alert(`Task ${removeTask.title} delete.`);
         allTask.removeChild(remove)
     }else{
-        console.log("Task not found.");
+        window.alert("Task not found.");
     }
 }
 
 //edit task list
-function editTask(id, newTitle){
-    const task = todoList.find(task => task.id === id);
-    if(task){
-        task.tile = newTitle;
-        console.log(`Task ${id} updated to "${newTitle}".`)
-    }else{
-        console.log("Task not found.")
-    }
-}
+// function editTask(id, newTitle){
+//     const task = todoList.find(task => task.id === id);
+//     if(task){
+//         task.tile = newTitle;
+//         console.log(`Task ${id} updated to "${newTitle}".`)
+//     }else{
+//         console.log("Task not found.")
+//     }
+// }
