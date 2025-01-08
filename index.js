@@ -64,13 +64,6 @@ function addTask(title){
     }
 }
 
-//list all task
-function listTask(){
-    todoList.forEach(task =>{
-        console.log(`[${task.complete ? "X" : " "}] 
-            ${task.id}: ${task.title}`);});
-}
-
 //Mark task as done
 function completeTask(id){
     const task = todoList.find(task => task.id === id)
